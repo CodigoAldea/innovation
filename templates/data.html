@@ -35,6 +35,63 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    {% comment %} added by : Amit for the design  {% endcomment %}
+    <style>
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+    
+        .project-item {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .project-item h2 {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+    
+        .project-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    
+        .project-item a:hover {
+            text-decoration: underline;
+        }
+    
+        .pagination  {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+    
+        .pagination li {
+            margin: 0 5px;
+            float: left;
+        }
+    
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+    
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+
 </head>
 
 <body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
@@ -88,12 +145,25 @@
             </li>
         {% endfor %}
     </ul>
-</div>
-     <!-- section  Blank padding Line for Bottom Section -->
-     <div class="section layout_padding">
-        
-     </div>
-     <!-- end section -->
+    <br>
+    <div class="pagination form-control text-center">
+        <ul style="margin:auto;">
+            {% if page.has_previous %}
+                <li><a href="?page=1">First</a></li>
+                <li><a href="?page={{ page.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            
+            <li class="current-page">Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
+            
+            {% if page.has_next %}
+                <li><a href="?page={{ page.next_page_number }}">Next</a></li>
+                <li><a href="?page={{ page.paginator.num_pages }}">Last</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    
+</div> <br> <br>
+
      
      
      
@@ -119,11 +189,11 @@
                     <div class="footer_blog footer_menu white_fonts">
                              <h3>Quick links</h3>
                              <ul> 
-                               <li><a href="#">> Join Us</a></li>
-                               <li><a href="#">> Gallery </a></li>
-                               <li><a href="#">> Projetcs</a></li>
-                               <li><a href="#">> Internships</a></li>
-                               <li><a href="#">> Certifications</a></li>
+                                <li><a href="/contact/"> >Join Us</a></li>
+							    <li><a href="#"> >Gallery </a></li>
+							    <li><a href="/project/"> >Projects</a></li>
+							    <li><a href="/intern/"> >Internships</a></li>
+							    <li><a href="/certification/"> >Certifications</a></li>
                              </ul>
                           </div>
                   </div>
@@ -163,7 +233,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="crp">© Copyright 2023 Design by <span class="company-name">Codigo Aldea</span> / <span class="developer-name">Amit Sahu</span></p>
+                    <p class="crp">© Copyright 2023 Developed by <span class="company-name">Codigo Aldea</span> / <span class="developer-name">Amit Sahu</span></p>
                 </div>
             </div>
         </div>
