@@ -285,31 +285,27 @@ def edit_project(request, pk):
 
     if request.method == 'POST':
         title = request.POST.get('title')
-        image = request.FILES.get('image')
-        image2 = request.FILES.get('image2')
         branch_name = request.POST.get('branch')
         description = request.POST.get('description')
         components = request.POST.get('components')
         application_area = request.POST.get('application_area')
+        
+        image = request.FILES.get('image')
+        image2 = request.FILES.get('image2')
 
-        if image and image2:
-            branch_instance = Branches.objects.get(name=branch_name)
-            project.title = title
+        branch_instance = Branches.objects.get(name=branch_name)
+        project.title = title
+        project.branch = branch_instance
+        project.description = description
+        project.components = components
+        project.application_area = application_area
+
+        if image:
             project.image = image
+        if image2:
             project.image2 = image2
-            project.branch = branch_instance
-            project.description = description
-            project.components = components
-            project.application_area = application_area
-            project.save()
-        else:
-            branch_instance = Branches.objects.get(name=branch_name)
-            project.title = title
-            project.branch = branch_instance
-            project.description = description
-            project.components = components
-            project.application_area = application_area
-            project.save()
+
+        project.save()
 
         return redirect('pro_dash')  # Redirect to the appropriate URL after updating
 

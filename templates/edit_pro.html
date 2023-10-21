@@ -5,7 +5,7 @@
         <div class="card card-3d">
             <div class="card-body">
                 <h2 class="card-title">Add a Project</h2>
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{projects.id}}">
                     <div class="mb-3">
@@ -14,11 +14,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Image-1</label>
-                        <input type="file" class="form-control" id="exampleInputPassword1" name='image' placeholder="{{projects.image}}">
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image' >
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Image-2</label>
-                        <input type="file" class="form-control" id="exampleInputPassword1" name='image2' value="{{projects.image2}}">
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image2' >
                     </div>
                     <div class="mb-3">
                         <label for="branchSelect" class="form-label">Select Branch</label>
