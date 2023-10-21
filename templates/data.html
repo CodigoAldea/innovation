@@ -1,6 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
+<style>
+    .project-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .project-item {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-item h2 {
+        font-size: 20px;
+        margin: 5px 0;
+    }
+
+    .project-item a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .project-item a:hover {
+        text-decoration: underline;
+    }
+
+    .pagination  {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+        float: left;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        color: #007bff;
+        background-color: #f5f5f5;
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+    .pagination a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
 
 <head>
     <meta charset="utf-8">
@@ -35,63 +90,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {% comment %} added by : Amit for the design  {% endcomment %}
-    <style>
-        .project-list {
-            list-style: none;
-            padding: 0;
-        }
-    
-        .project-item {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    
-        .project-item h2 {
-            font-size: 20px;
-            margin: 5px 0;
-        }
-    
-        .project-item a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    
-        .project-item a:hover {
-            text-decoration: underline;
-        }
-    
-        .pagination  {
-            display: flex;
-            list-style: none;
-            padding: 0;
-        }
-    
-        .pagination li {
-            margin: 0 5px;
-            float: left;
-        }
-    
-        .pagination a {
-            text-decoration: none;
-            color: #007bff;
-            background-color: #f5f5f5;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: background-color 0.2s, color 0.2s;
-        }
-    
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-    </style>
-
 </head>
 
 <body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
@@ -109,8 +107,8 @@
     <header class="top-header">
         <nav class="navbar header-nav navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href=""><img src="/static/images/ilogo.png" alt="image"></a>
-				<a class="navbar-brand" href=""><img src="/static/images/logo11.png" alt="image"></a>
+                <a class="navbar-brand" href="/"><img src="/static/images/ilogo.png" alt="image"></a>
+				<a class="navbar-brand" href="/"><img src="/static/images/logo11.png" alt="image"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -137,126 +135,120 @@
     </header>
     <!-- End header -->
 <!-- added by amit -->
-<div>
-    <ul class="list-group">
-        {% for project in projects %}
-            <li class="list-group-item">
-            <h2><a href="/img/ptitle/{{project.title}}">{{ project.title }}</a></h2>
-            </li>
-        {% endfor %}
+<div class="project-list">
+    {% for project in page %}
+        <li class="project-item">
+            <h2><a href="/img/ptitle/{{ project.title }}">{{ project.title }}</a></h2>
+        </li>
+    {% endfor %}
+</div>
+<br>
+<div class="pagination form-control text-center">
+    <ul style="margin:auto;">
+        {% if page.has_previous %}
+            <li><a href="?page=1">First</a></li>
+            <li><a href="?page={{ page.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+        <li class="current-page">Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
+        
+        {% if page.has_next %}
+            <li><a href="?page={{ page.next_page_number }}">Next</a></li>
+            <li><a href="?page={{ page.paginator.num_pages }}">Last</a></li>
+        {% endif %}
     </ul>
-    <br>
-    <div class="pagination form-control text-center">
-        <ul style="margin:auto;">
-            {% if page.has_previous %}
-                <li><a href="?page=1">First</a></li>
-                <li><a href="?page={{ page.previous_page_number }}">Previous</a></li>
-            {% endif %}
-            
-            <li class="current-page">Page {{ page.number }} of {{ page.paginator.num_pages }}</li>
-            
-            {% if page.has_next %}
-                <li><a href="?page={{ page.next_page_number }}">Next</a></li>
-                <li><a href="?page={{ page.paginator.num_pages }}">Last</a></li>
-            {% endif %}
-        </ul>
-    </div>
-    
+</div>
+
 </div> <br> <br>
 
-     
-     
-     
-   <!-- Start Footer -->
-     <footer class="footer-box">
-         <div class="container">
-         
+<!-- Start Footer -->
+    <footer class="footer-box">
+        <div class="container">
             <div class="row">
             
-               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                  <div class="footer_blog">
-                     <div class="full margin-bottom_30">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog">
+                    <div class="full margin-bottom_30">
                         <img src="/static/images/Flogo1.png" alt="#" />
-                      </div>
-                      <div  style =" text-align:justify" class="full white_fonts">
-                     
-                         <p> I4U is a Rapidly growing Mentoring and Training Institute which has successfully completed 4270 T&D Activities and planning to expand for Industrial Automation Training.</p>
-                      </div>
-                  </div>
-               </div>
-               
-               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    </div>
+                    <div  style =" text-align:justify" class="full white_fonts">
+                    
+                        <p> I4U is a Rapidly growing Mentoring and Training Institute which has successfully completed 4270 T&D Activities and planning to expand for Industrial Automation Training.</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                     <div class="footer_blog footer_menu white_fonts">
-                             <h3>Quick links</h3>
-                             <ul> 
+                            <h3>Quick links</h3>
+                            <ul> 
                                 <li><a href="/contact/"> >Join Us</a></li>
 							    <li><a href="#"> >Gallery </a></li>
 							    <li><a href="/project/"> >Projects</a></li>
 							    <li><a href="/intern/"> >Internships</a></li>
 							    <li><a href="/certification/"> >Certifications</a></li>
-                             </ul>
-                          </div>
-                  </div>
-                  
-                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                  <div class="footer_blog full white_fonts">
-                              <h3>Updates</h3>
-                              <p>For Updates and Brouchers , mail us</p>
-                              <div class="newsletter_form">
-                                 <form method="post">
-                                     {% csrf_token %}
+                                </ul>
+                    </div>
+                </div>
+                
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog full white_fonts">
+                            <h3>Updates</h3>
+                                <p>For Updates and Brouchers , mail us</p>
+                            <div class="newsletter_form">
+                                <form method="post">
+                                    {% csrf_token %}
                                     <input type="email" placeholder="Your Email" name="email" required />
                                     <button>Submit</button>
-                                 </form>
-                              </div>
-                          </div>
-                     </div>	 
-               
-               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                  <div class="footer_blog full white_fonts">
-                              <h3>Contact us</h3>
-                              <ul class="full">
+                                </form>
+                            </div>
+                    </div>
+                    </div>	 
+                
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog full white_fonts">
+                                <h3>Contact us</h3>
+                                <ul class="full">
                                 <li><img src="/static/images/i5.png"><span>Smriti Nagar , Bhilai<br>Chhattisgarh, BHARAT </span></li>
                                 <li><img src="/static/images/i61.png"><span>info@innovation4u.in , projects@innovation4u.in</span></li>
                                 <li><img src="/static/images/i7.png"><span>+91-8103661072</span></li>
-                              </ul>
-                          </div>
-                     </div>	 
-               
+                                </ul>
+                    </div>
+                </div>	 
+                
             </div>
-         
-         </div>
-     </footer>
-     <!-- End Footer -->
- 
+        
+        </div>
+    </footer>
+    <!-- End Footer -->
+
     <div class="footer_bottom">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="crp">© Copyright 2023 Developed by <span class="company-name">Codigo Aldea</span> / <span class="developer-name">Amit Sahu</span></p>
-                </div>
+                    <p class="crp">© Copyright 2023 Developed by <span class="company-name">Codigo Aldea</span> / <span class="developer-name">Amit Sahu</span></p>                </div>
             </div>
         </div>
     </div>
     
- 
-     <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
- 
-     <!-- ALL JS FILES -->
-     <script src="/static/js/jquery.min.js"></script>
-     <script src="/static/js/popper.min.js"></script>
-     <script src="/static/js/bootstrap.min.js"></script>
-     <!-- ALL PLUGINS -->
-     <script src="/static/js/jquery.magnific-popup.min.js"></script>
-     <script src="/static/js/jquery.pogo-slider.min.js"></script>
-     <script src="/static/js/slider-index.js"></script>
-     <script src="/static/js/smoothscroll.js"></script>
-     <script src="/static/js/form-validator.min.js"></script>
-     <script src="/static/js/contact-form-script.js"></script>
-     <script src="/static/js/isotope.min.js"></script>
-     <script src="/static/js/images-loded.min.js"></script>
-     <script src="/static/js/custom.js"></script>
-     <script>
+
+    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery.pogo-slider.min.js"></script>
+    <script src="/static/js/slider-index.js"></script>
+    <script src="/static/js/smoothscroll.js"></script>
+    <script src="/static/js/form-validator.min.js"></script>
+    <script src="/static/js/contact-form-script.js"></script>
+    <script src="/static/js/isotope.min.js"></script>
+    <script src="/static/js/images-loded.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <script>
      /* counter js */
  
  (function ($) {
@@ -358,6 +350,6 @@
    }
  });
      </script>
- </body>
- 
- </html>
+</body>
+
+</html>
