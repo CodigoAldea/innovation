@@ -1,0 +1,49 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+<div class="row">
+    <div class="col">
+        <div class="card card-3d">
+            <div class="card-body">
+                <h2 class="card-title">Add a Project</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{projects.id}}">
+                    <div class="mb-3">
+                        <label for="branchName" class="form-label">Title</label>
+                        <input type="text" class="form-control input-3d" id="branchName" name="title"  value="{{projects.title}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image-1</label>
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image' placeholder="{{projects.image}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image-2</label>
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image2' value="{{projects.image2}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="branchSelect" class="form-label">Select Branch</label>
+                        <select class="form-select" id="branchSelect" aria-label="Select branch" name='branch' value="{{projects.branch}}">
+                            {% for i in branch %}
+                                <option value="{{i.name}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea  class="form-control" id="description" name='description' > {{projects.description}} </textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="components" class="form-label">Components</label>
+                        <input type="text" class="form-control" id="components" name='components' value="{{projects.components}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="appArea" class="form-label">Application area</label>
+                        <input type="text" class="form-control" id="appArea" name='application_area' value="{{projects.application_area}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-3d">Update this project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock adminpage %}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Metas -->
+    <title>Registeration</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="#" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <!-- Pogo Slider CSS -->
+    <link rel="stylesheet" href="/static/css/pogo-slider.min.css" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css" />
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	
+<script type="text/javascript">
+
+function CreateExcelSheet()
+{
+
+var x=myTable.rows
+
+var xls = new ActiveXObject("Excel.Application")
+xls.visible = true
+xls.Workbooks.Add
+for (i = 0; i < x.length; i++)
+{
+var y = x.cells
+
+
+    for (j = 0; j < y.length; j++)
+    {
+        xls.Cells( i+1, j+1).Value = y[j].innerText
+    }
+}
+}
+</script>
+
+</head>
+
+<body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+
+    {% comment %} <!-- LOADER -->
+    <div id="preloader">
+        <div class="loader">
+            <img src="/static/images/loader.gif" alt="#" />
+        </div>
+    </div>
+    <!-- end loader -->
+    <!-- END LOADER --> {% endcomment %}
+    <!-- Start header -->
+    <header class="top-header">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><img src="/static/images/ilogo.png" alt="image"></a>
+				<a class="navbar-brand" href="/"><img src="/static/images/logo11.png" alt="image"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="/">Home</a></li>
+                        <li><a class="nav-link active" href="/project/">Projects</a></li>
+                        <li><a class="nav-link" href="/intern/">Internships</a></li>
+                        <li><a class="nav-link" href="/certification/">Certification Courses</a></li>
+						<li><a class="nav-link" href="/resources/">Resources</a></li>
+						<li><a class="nav-link" href="/contact/">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-txt" placeholder="Search">
+                    <a class="search-btn">
+                        <img src="/static/images/search_icon.png" alt="#" />
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+	<!-- section -->
+	
+	<section class="inner_banner">
+	    <div class="container">
+	        <div class="row">
+		        <div class="col-12">
+			        <div style= "word-spacing: 10px"class="full">
+				        <h3>Registration Form for Projects and Internships</h3>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	</section>
+	
+	<!-- end section -->
+	{% comment %} added by Amit Sahu {% endcomment %}
+<form method='post'style='padding:100px;'>
+	{% csrf_token %}
+	<h1 style="text-align: center;font-size:50px">Register</h1>
+		<p style="text-align: center;font-size:30px">Please fill in this form for any Inquery or Doubts.</p>
+	<hr>
+	<div class="mb-3">
+		<label for="fname" class="form-label">Full Name</label>
+		<input type="text" class="form-control" id="fname" name="name" placeholder="Your full name" required>
+	</div>
+	<div class="mb-3">
+		<label for="phone" class="form-label">Contact Number</label>
+		<input type="text" class="form-control" id="phone" name="phone" placeholder="Your Contact Number"required>
+	</div>
+	<div class="mb-3">
+		<label for="email" class="form-label">Email</label>
+		<input type="text" class="form-control" id="email" name="email" placeholder="Your Email" required>
+	</div>
+	<div class="mb-3">
+		<label for="degree" class="form-label">Degree</label>
+		<input type="text" class="form-control" id="degree" name="degree" placeholder="M.Tech,BE/BTech,Diploma.." required>
+	</div>
+	<div class="mb-3">
+		<label for="branch" class="form-label">Branch</label>
+		<select id="country" name="branch" class="form-control">
+			<option value="Electronics-IoT-AI-ML">Electronics-IoT-AI-ML</option>
+			<option value="Electrical">Electrical</option>
+			<option value="Computer Science">Computer Science</option>
+			<option value="e-Medico">e-Medico</option>
+			<option value="Mechanial">Mechanial</option>
+			<option value="Control and Instrumenation">Control and Instrumenation</option>
+		</select>
+	</div>
+	<div class="mb-3">
+		<label for="topic" class="form-label">Topic Name</label>
+		<input type="text" class="form-control" id="topic" name="topic" placeholder="M.Tech,BE/BTech,Diploma.." required>
+	</div>
+	<div class="mb-3">
+		<label for="query" class="form-label">Remarks/Query/Doubts</label>
+		<textarea class="form-control" id="query" name="query" placeholder="Ask.." required style="height:100px"></textarea>
+	</div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModalCenter">
+		Register
+	</button>
+
+<hr>
+{% comment %} modal added by amit {% endcomment %}
+<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Registraction from </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+				<div class="modal-body">
+					<h2> Your Inquery ID : I4U_{{data|add:1}}
+				</div>
+				<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Confirm Registeration</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<br>
+<!-- Start Footer -->
+<footer class="footer-box container-fluid">
+	<div class="container">
+	
+		<div class="row">
+		
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<div class="footer_blog">
+					<div class="full margin-bottom_30">
+						<img src="/static/images/Flogo1.png" alt="#" />
+					</div>
+					<div  style =" text-align:justify" class="full white_fonts">
+						<p> I4U is a Rapidly growing Mentoring and Training Institute which has successfully completed 4270 T&D Activities and planning to expand for Industrial Automation Training.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<div class="footer_blog footer_menu white_fonts">
+						<h3>Quick links</h3>
+						<ul> 
+							<li><a href="#">> Join Us</a></li>
+							<li><a href="#">> Gallery </a></li>
+							<li><a href="#">> Projetcs</a></li>
+							<li><a href="#">> Internships</a></li>
+							<li><a href="#">> Certifications</a></li>
+						</ul>
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<div class="footer_blog full white_fonts">
+						<h3>Updates</h3>
+						<p>For Updates and Brouchers , mail us</p>
+						<div class="newsletter_form">
+							<form method="post">
+								{% csrf_token %}
+							<input type="email" placeholder="Your Email" name="email" required />
+								<button>Submit</button>
+							</form>
+						</div>
+				</div>
+			</div>	 
+		
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<div class="footer_blog full white_fonts">
+						<h3>Contact us</h3>
+						<ul class="full">
+						<li><img src="/static/images/i5.png"><span>Smriti Nagar , Bhilai<br>Chhattisgarh, BHARAT </span></li>
+						<li><img src="/static/images/i61.png"><span>info@innovation4u.in , projects@innovation4u.in</span></li>
+						<li><img src="/static/images/i7.png"><span>+91-8103661072</span></li>
+						</ul>
+				</div>	 
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- End Footer -->
+
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="crp">© Copyrights 2019 design by html.design</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+	<script>
+		// Use JavaScript to show the modal and set a timer to close it
+		{% comment %} modal timer added by amit {% endcomment %}
+		$(document).ready(function() {
+			// Show the modal when the page loads
+			$('#exampleModalCenter').modal('show');
+			
+			// Set a timer to close the modal after a specified duration (in milliseconds)
+			setTimeout(function() {
+				$('#exampleModalCenter').modal('hide');
+			}, 10000); // 10000 milliseconds (10 seconds) - Change this value as needed
+		});
+	</script>
+    <!-- ALL JS FILES -->
+    <script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery.pogo-slider.min.js"></script>
+    <script src="/static/js/slider-index.js"></script>
+    <script src="/static/js/smoothscroll.js"></script>
+    <script src="/static/js/form-validator.min.js"></script>
+    <script src="/static/js/contact-form-script.js"></script>
+    <script src="/static/js/isotope.min.js"></script>
+    <script src="/static/js/images-loded.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+</body>
+
+</html>

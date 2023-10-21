@@ -1,0 +1,70 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+<style>
+    /* Add some cool animations using Animate.css */
+    .table-3d {
+        animation: fadeInUp 1s;
+    }
+
+    .btn-3d {
+        transition: transform 0.2s;
+    }
+
+    .btn-3d:hover {
+        transform: scale(1.1);
+    }
+
+    .card-3d {
+        animation: fadeInRight 1s;
+    }
+
+    .input-3d {
+        transition: transform 0.2s;
+    }
+
+    .input-3d:hover,
+    .input-3d:focus {
+        transform: scale(1.05);
+    }
+</style>
+<div class="row">
+    <div class="col">
+        <h1 class="display-4">Branch List</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-3d">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <td>
+                            <a href="/dashboard/bdel/{{ i.id }}" class="btn btn-danger btn-3d">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-3d">
+            <div class="card-body">
+                <h2 class="card-title">Add a Branch</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="branchName" class="form-label">Branch Name</label>
+                        <input type="text" class="form-control input-3d" id="branchName" name="name" placeholder="Enter branch name">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-3d">Add Branch</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock adminpage %}

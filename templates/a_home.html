@@ -1,0 +1,80 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+  <div class="admin-content">
+    <h1>Welcome to the Innovation4U Admin Panel</h1>
+    <p>This is where you can manage your site.</p>
+
+    <div class="card">
+      <div class="card-header">
+        Dashboard
+      </div>
+      <div class="card-body">
+        <p>Here's a summary of your site's performance:</p>
+        <ul>
+          <li>Total Users: 1,234</li>
+          <li>Page Views: 50,000</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Recent Activity
+      </div>
+      <div class="card-body">
+        <ul class="activity-list">
+          <li>
+            <span class="activity-user">Amit sahu</span> updated the product catalog.
+          </li>
+          <li>
+            <span class="activity-user">Amit sahu</span> added a new blog post.
+          </li>
+          <li>
+            <span class="activity-user">Admin</span> changed the site settings.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <style>
+    .admin-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .card {
+      background-color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+
+    .card-header {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .activity-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .activity-list li {
+      margin-bottom: 10px;
+    }
+
+    .activity-user {
+      font-weight: bold;
+      color: #3498db;
+    }
+  </style>
+{% endblock adminpage %}

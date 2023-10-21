@@ -1,0 +1,138 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+<style>
+    .cool-table {
+        border-collapse: collapse;
+        width: 100%;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .cool-table th, .cool-table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .cool-table th {
+        background-color: #3498db;
+        color: #fff;
+    }
+
+    .cool-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .cool-table tr:hover {
+        background-color: #e0e0e0;
+        transform: scale(1.02);
+    }
+
+    .cool-table img {
+        max-width: 100px;
+        max-height: 100px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+    }
+
+    .cool-table img:hover {
+        transform: scale(1.1);
+    }
+
+    .cool-table a.btn {
+        background-color: #27ae60;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .cool-table a.btn:hover {
+        background-color: #219145;
+        transform: scale(1.05);
+    }
+</style>
+<div class="row">
+    <div class="col">
+        <div class="card card-3d">
+            <div class="card-body">
+                <h2 class="card-title">Add a Project</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="branchName" class="form-label">Title</label>
+                        <input type="text" class="form-control input-3d" id="branchName" name="title" placeholder="Enter title name" required=true>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image-1</label>
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image' placeholder="Upload first image"required=true>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image-2</label>
+                        <input type="file" class="form-control" id="exampleInputPassword1" name='image2' placeholder="Upload second image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="branchSelect" class="form-label">Select Branch</label>
+                        <select class="form-select" id="branchSelect" aria-label="Select branch" name='branch' required=true>
+                            {% for i in branch %}
+                                <option value="{{i.name}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea  class="form-control" id="description" name='description' placeholder="Enter description" required=true> </textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="components" class="form-label">Components</label>
+                        <input type="text" class="form-control" id="components" name='components' placeholder="Enter components used" required=true>
+                    </div>
+                    <div class="mb-3">
+                        <label for="appArea" class="form-label">Application area</label>
+                        <input type="text" class="form-control" id="appArea" name='application_area' placeholder="Enter data" required=true>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-3d">Add this project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h1>All Projects </h1>
+        <table class="cool-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Images</th>
+                    <th>Branch</th>
+                    <th>Description</th>
+                    <th>Components</th>
+                    <th>Application Area</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td> <a href="/dashboard/edit_project/{{i.id}}"> {{ i.title }} </td>
+                    <td>
+                        <img src="/media/{{ i.image }}" alt="Image 1">
+                        <img src="/media/{{ i.image2 }}" alt="Image 2">
+                    </td>
+                    <td>{{ i.branch }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.components }}</td>
+                    <td>{{ i.application_area }}</td>
+                    <td>
+                        <a href="/dashboard/pdel/{{ i.id }}" class="btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock adminpage %}

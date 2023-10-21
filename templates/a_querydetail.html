@@ -1,0 +1,73 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+    <div class="row">
+        <div class="col">
+            <h1 class="display-4">Registration Form</h1>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Degree</th>
+                        <th>Phone</th>
+                        <th>Branch</th>
+                        <th>Topic</th>
+                        <th>Query</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                        <tr>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.email }}</td>
+                            <td>{{ i.degree }}</td>
+                            <td>{{ i.phone }}</td>
+                            <td>{{ i.branch }}</td>
+                            <td>{{ i.topic }}</td>
+                            <td>{{ i.query }}</td>
+                            <td>
+                                <a href="/dashboard/dele/{{ i.id }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h2 class="display-4">Add New Entry</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="degree" class="form-label">Degree</label>
+                    <input type="text" class="form-control" id="degree" name="degree" required>
+                </div>
+                <div class="mb-3">
+                    <label for="branch" class="form-label">Branch</label>
+                    <input type="text" class="form-control" id="branch" name="branch" required>
+                </div>
+                <div class="mb-3">
+                    <label for="topic" class="form-label">Topic</label>
+                    <input type="text" class="form-control" id="topic" name="topic" required>
+                </div>
+                <div class="mb-3">
+                    <label for="query" class="form-label">Query</label>
+                    <textarea class="form-control" id="query" name="query" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock adminpage %}
