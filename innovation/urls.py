@@ -45,4 +45,5 @@ urlpatterns = [
     path('login/', views.admin_login, name='admin_login'),
     path('admin_logout/', views.admin_logout, name='admin_logout'),
     path('img/',include('form.urls')), # for the app form
+    path('dashboard/edit_query/<int:pk>', views.editquery, name='edit_query'), # added by amit
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # to route the uplaod images

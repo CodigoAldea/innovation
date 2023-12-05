@@ -1,0 +1,71 @@
+{% extends "adminbase.html" %}
+{% block adminpage %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<div class="row">
+    <div class="col">
+        <div class="card card-3d">
+            <div class="card-body">
+                <h2 class="card-title">Edit Query</h2>
+                <form method="post" action="{% url 'edit_query' pk=item.pk %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control input-3d" id="name" name="name" value="{{ item.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control input-3d" id="email" name="email" value="{{ item.email }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="degree" class="form-label">Degree</label>
+                        <input type="text" class="form-control input-3d" id="degree" name="degree" value="{{ item.degree }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control input-3d" id="phone" name="phone" value="{{ item.phone }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="branch" class="form-label">Branch</label>
+                        <input type="text" class="form-control input-3d" id="branch" name="branch" value="{{ item.branch }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="topic" class="form-label">Topic</label>
+                        <input type="text" class="form-control input-3d" id="topic" name="topic" value="{{ item.topic }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="query" class="form-label">Query</label>
+                        <textarea class="form-control input-3d" id="query" name="query" required>{{ item.query }}</textarea>
+                    </div>
+                    
+                    <!-- Display total_amount, advance, and balance fields -->
+                    <div class="mb-3">
+                        <label for="total_amount" class="form-label">Total Amount</label>
+                        <input type="text" class="form-control input-3d" id="total_amount" name="total_amount" value="{{ item.total_amount }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="advance" class="form-label">Advance</label>
+                        <input type="text" class="form-control input-3d" id="advance" name="advance" value="{{ item.advance }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="balance" class="form-label">Balance</label>
+                        <input type="text" class="form-control input-3d" id="balance" name="balance" value="{{ item.balance }}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-3d">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // Prevent form submission on Enter key press, except for textareas
+        $('form').keypress(function (e) {
+            if (e.which === 13 && e.target.nodeName !== 'TEXTAREA') {
+                e.preventDefault();
+                // Perform your custom logic here instead of submitting the form
+            }
+        });
+    });
+</script>
+{% endblock adminpage %}

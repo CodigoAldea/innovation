@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
 class Contact(models.Model):#contact-us 
     name = models.CharField(max_length=100, null=False)
     email = models.EmailField()
@@ -20,6 +17,9 @@ class Register(models.Model):
     branch=models.CharField(max_length=20)
     topic=models.CharField(max_length=50)
     query=models.CharField(max_length=150)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    advance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     
     def __str__(self):
         return self.name

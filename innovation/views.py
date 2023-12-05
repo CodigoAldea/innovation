@@ -161,7 +161,12 @@ def resources(request):
         mail.save()
     return render(request, "Robotics.html")"""
 
-
+def resources(request):
+    if request.method == 'POST':
+        email=request.POST.get('email')
+        mail=updates(email=email)
+        mail.save()
+    return render(request,"Resources.html")
 def adminbase(request):
     return render(request, 'a_home.html')
 
@@ -182,25 +187,72 @@ def admin_login(request):
     return render(request, 'login.html')
 
 def aquery_detail(request):
-    item= Register.objects.all().order_by('-id')
-    if request.method =='POST' :
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        degree=request.POST.get('degree')
-        phone=request.POST.get('phone')
-        branch=request.POST.get('branch')
-        topic=request.POST.get('topic')
-        query=request.POST.get('query')
+    items = Register.objects.all().order_by('-id')
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        degree = request.POST.get('degree')
+        phone = request.POST.get('phone')
+        branch = request.POST.get('branch')
+        topic = request.POST.get('topic')
+        query = request.POST.get('query')
+        total_amount = request.POST.get('total_amount')
+        advance = request.POST.get('advance')
+        balance = request.POST.get('balance')
+
         if name:
-            a = Register.objects.create(name=name, email=email, degree=degree, phone= phone, branch=branch, topic=topic, query=query)
-            a.save()
-        return render(request, 'a_querydetail.html',{'data': item})
-    return render(request, 'a_querydetail.html',{'data': item})
+            Register.objects.create(
+                name=name, email=email, degree=degree,
+                phone=phone, branch=branch, topic=topic, query=query,
+                total_amount=total_amount, advance=advance, balance=balance
+            )
+        
+        return redirect('a_query_detail')  # Redirect to the view displaying query details
+
+    return render(request, 'a_querydetail.html', {'data': items})
 
 def delquery(request,pk):
     item=Register.objects.get(pk=pk)
     item.delete()
     return redirect('q_dash')
+
+
+def editquery(request, pk):
+    item = get_object_or_404(Register, pk=pk)
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        degree = request.POST.get('degree')
+        phone = request.POST.get('phone')
+        branch = request.POST.get('branch')
+        topic = request.POST.get('topic')
+        query_text = request.POST.get('query')
+        total_amount = request.POST.get('total_amount')
+        advance = request.POST.get('advance')
+        balance = request.POST.get('balance')
+
+        # Update the existing query with new values
+        item.name = name
+        item.email = email
+        item.degree = degree
+        item.phone = phone
+        item.branch = branch
+        item.topic = topic
+        item.query = query_text
+        item.total_amount = total_amount
+        item.advance = advance
+        item.balance = balance
+
+        try:
+            # Save the updated query
+            item.save()
+            return redirect('q_dash')  # Redirect to the dashboard after editing
+        except Exception as e:
+            # Handle the exception or display an error message
+            print(f"Error saving query: {e}")
+
 
 def abranches(request):
     item=Branches.objects.all().order_by('-id')
