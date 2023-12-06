@@ -54,6 +54,27 @@
         transform: scale(1.05);
     }
 </style>
+<script>
+    function searchProjects() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("projectTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0]; // Change the index based on the column you want to search
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 <div class="container" style=" height: 100vh;overflow: auto;">
     <div class="row">
         <div class="col">
@@ -109,7 +130,7 @@
             </form>
             <!-- Search form by Amit-->
             <h1>All Projects </h1>
-            <table class="cool-table">
+            <table id="projectTable" class="cool-table">
                 <thead style="position: sticky;
                 top: 0;
                 z-index: 1;"> <!-- syle added by Dhawal-->

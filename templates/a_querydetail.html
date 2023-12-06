@@ -3,6 +3,11 @@
     <div class="row">
         <div class="col">
             <h1 class="display-4">Registration Form</h1>
+            <!-- Search Bar -->
+            <div class="mb-3">
+                <input type="text" class="form-control mr-2 mb-3" id="searchInput" placeholder="Search...">
+                <button type="button" class="btn btn-primary form-control" onclick="search()">Search</button>
+            </div>
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -34,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col">
+        {% comment %} <div class="col">
             <h2 class="display-4">Add New Entry</h2>
             <form method="POST">
                 {% csrf_token %}
@@ -68,6 +73,27 @@
                 </div>
                 <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
             </form>
-        </div>
+        </div> {% endcomment %}
     </div>
+    <script>
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tableBody");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Adjust index based on the column you want to search
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 {% endblock adminpage %}
