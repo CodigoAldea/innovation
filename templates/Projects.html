@@ -109,14 +109,10 @@
 						  <p>	 We take up Project Mentoring for B.Tech , M-Tech and PhD Candidates . We have Mentored  >2450 projects for B Tech, >260 for MTech, around 64 for PhD and aroung 320 for e-medico. 
 						  We have several Internship programs and Certification Programs to address around 7200 Candidates </p>
 						</div>
-						<div class="full">
-						   <a class="hvr-radial-out button-theme" href="/img/projects/Electronics">Electronics </a> <br><br><br>
-						    <a class="hvr-radial-out button-theme" href="/img/projects/Electrical">Electrical</a> <br><br><br>
-							 <a class="hvr-radial-out button-theme" href="/img/projects/CS">CS</a> <br><br><br>
-							  <a class="hvr-radial-out button-theme" href="/img/projects/C&I"> C&I </a> <br><br><br>
-							   <a class="hvr-radial-out button-theme" href="/img/projects/IoT">IoT</a> <br><br><br>
-							    <a class="hvr-radial-out button-theme" href="/img/projects/AI- ML">AI-ML</a><br><br><br>
-								<a class="hvr-radial-out button-theme" href="/img/projects/Robotics">Robotics</a>
+						<div class="full"> <!--Added by Dhawal for the dynamic data -->
+							{% for branch in branchs %}
+						   <a class="hvr-radial-out button-theme" href="/img/projects/{{branch.name}}">{{branch.name}} </a> <br><br><br>
+						   {% endfor %}
 						</div>
                     </div>
                 </div>

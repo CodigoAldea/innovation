@@ -8,9 +8,6 @@ from form.forms import ContactForm
 from django.shortcuts import get_object_or_404
 
 
-
-
-
 def home(request):
     if request.method == 'POST':
         email=request.POST.get('email')
@@ -111,11 +108,12 @@ def intern(request):
     return render (request, "IoT.html")"""
 
 def projects(request):
+    branches=Branches.objects.all()
     if request.method == 'POST':
         email=request.POST.get('email')
         mail=updates(email=email)
         mail.save()
-    return render(request, "Projects.html")
+    return render(request, "Projects.html",{'branchs':branches})
 
 def Regis(request):
     LastInsertId = (Register.objects.last()).id
@@ -217,7 +215,6 @@ def delquery(request,pk):
     item.delete()
     return redirect('q_dash')
 
-
 def editquery(request, pk):
     item = get_object_or_404(Register, pk=pk)
 
@@ -252,7 +249,6 @@ def editquery(request, pk):
         except Exception as e:
             # Handle the exception or display an error message
             print(f"Error saving query: {e}")
-
 
 def abranches(request):
     item=Branches.objects.all().order_by('-id')
