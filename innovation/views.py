@@ -15,26 +15,12 @@ def home(request):
         mail.save()
     return render(request,"index.html")
 
-"""def AIML(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request, "AIML.html")"""
-
 def certification(request):
     if request.method == 'POST':
         email=request.POST.get('email')
         mail=updates(email=email)
         mail.save()
     return render(request, "Certification.html")
-
-"""def CI(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request, "CI.html")"""
 
 def contact(request):
     if request.method == 'POST':
@@ -58,54 +44,12 @@ def contact(request):
     
     return render(request, 'contact.html')
 
-"""def cs(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render (request, "CS.html")"""
-
-"""def electrical(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render (request,"Electrical.html")"""
-
-"""def electronic(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render (request, "Electronic.html")"""
-
-"""def emedico(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request, "emedico.html")"""
-
-"""def about(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request, "about.html")"""
-
 def intern(request):
     if request.method == 'POST':
         email=request.POST.get('email')
         mail=updates(email=email)
         mail.save()
     return render (request, "Internships.html")
-
-"""def iot(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render (request, "IoT.html")"""
 
 def projects(request):
     branches=Branches.objects.all()
@@ -152,19 +96,6 @@ def resources(request):
         mail.save()
     return render(request,"Resources.html")
 
-"""def robotics(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request, "Robotics.html")"""
-
-def resources(request):
-    if request.method == 'POST':
-        email=request.POST.get('email')
-        mail=updates(email=email)
-        mail.save()
-    return render(request,"Resources.html")
 def adminbase(request):
     return render(request, 'a_home.html')
 
@@ -249,6 +180,8 @@ def editquery(request, pk):
         except Exception as e:
             # Handle the exception or display an error message
             print(f"Error saving query: {e}")
+    
+    return render(request, 'edit_query.html', {'item': item})
 
 def abranches(request):
     item=Branches.objects.all().order_by('-id')
